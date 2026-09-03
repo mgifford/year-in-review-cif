@@ -67,3 +67,5 @@ _site/
 .terraform/
 *.tfstate
 *.tfstate.*.venv/
+playwright-report/
+test-results/

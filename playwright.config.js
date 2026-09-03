@@ -6,7 +6,10 @@ module.exports = defineConfig({
   testDir: "./tests",
   timeout: 30000,
   fullyParallel: true,
-  reporter: process.env.CI ? "line" : [["list"]],
+  forbidOnly: !!process.env.CI,
+  reporter: process.env.CI
+    ? [["line"], ["html", { open: "never" }]]
+    : [["list"]],
   use: {
     baseURL: "http://localhost:8080",
     trace: "on-first-retry",
