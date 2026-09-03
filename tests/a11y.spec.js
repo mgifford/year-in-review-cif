@@ -383,6 +383,54 @@ test.describe("organization identity", () => {
 });
 
 // ---------------------------------------------------------------------------
+// Layout: decorative art must not sit under text
+// ---------------------------------------------------------------------------
+test.describe("hero layout", () => {
+  // Short viewports are the failure case: the hint used to be positioned
+  // absolutely, so flowed content grew down underneath it.
+  const sizes = [
+    { width: 1280, height: 900 },
+    { width: 1280, height: 560 },
+    { width: 1024, height: 640 },
+    { width: 768, height: 600 },
+    { width: 390, height: 844 },
+    { width: 320, height: 600 },
+    // Smaller than any real device; it may scroll, but must not overlap.
+    { width: 320, height: 400, mayScroll: true },
+  ];
+
+  for (const size of sizes) {
+    test(`the plant does not overlap the scroll hint at ${size.width}x${size.height}`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({ width: size.width, height: size.height });
+      await page.goto("/");
+      const boxes = await page.evaluate(() => {
+        const rect = (sel) => {
+          const { top, bottom, left, right } = document.querySelector(sel).getBoundingClientRect();
+          return { top, bottom, left, right };
+        };
+        return { seed: rect(".seed"), hint: rect(".scroll-hint"), viewport: window.innerHeight };
+      });
+      const { seed, hint, viewport } = boxes;
+      const overlaps =
+        seed.bottom > hint.top &&
+        seed.top < hint.bottom &&
+        seed.right > hint.left &&
+        seed.left < hint.right;
+      expect(overlaps, `seed ${JSON.stringify(seed)} vs hint ${JSON.stringify(hint)}`).toBe(false);
+
+      if (!size.mayScroll) {
+        expect(
+          hint.bottom,
+          "the scroll hint should not be pushed out of view"
+        ).toBeLessThanOrEqual(viewport + 1);
+      }
+    });
+  }
+});
+
+// ---------------------------------------------------------------------------
 // Automated scan (backstop only)
 // -----------------------
 
