@@ -769,7 +769,8 @@ eleventyExcludeFromCollections: true
     </div>
   </div>
   <p class="org-badge">
-    {% if org.logo %}<img class="org-logo" src="{{ org.logo }}" alt="" width="56" height="56" onerror="this.remove()">{% endif %}
+    {% set logo = orgLogo or org.logo %}
+    {% if logo %}<img class="org-logo" src="{{ logo }}" alt="" width="56" height="56" onerror="this.remove()">{% endif %}
     <a class="org-name" href="{{ org.url }}">{{ org.name }}</a>
   </p>
   <div class="eyebrow" id="eyebrowPeriod">Year in Review</div>

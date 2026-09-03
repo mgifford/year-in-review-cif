@@ -81,8 +81,10 @@ Nothing else needs editing to retarget the site:
 ```
 
 The name is used in the page title, the hero, the intro sentence and the footer.
-`logo` is optional — if it is absent, or the request fails, the image is dropped
-and the name alone is shown.
+`logo` is optional. It is the *source* the logo is fetched from; the image is
+cached into `metrics_data/org/` so the built page makes no third-party request.
+If no cached copy exists the configured URL is used directly, and if the image
+fails to load it is removed rather than left broken.
 
 Set `drupal.enabled` to `true` and give either a `nid` or an `orgTitle` to also
 report Drupal.org issue credits. `orgTitle` is looked up against the
@@ -99,6 +101,9 @@ GH_TOKEN=$(gh auth token) ORG_NAME=your-org \
 
 # Drupal.org (reads src/_data/org.json; no credentials needed)
 .venv/bin/python scripts/drupal_metrics.py
+
+# Cache the org logo locally (reads src/_data/org.json)
+.venv/bin/python scripts/fetch_org_logo.py
 ```
 
 `.github/workflows/refresh-metrics.yml` runs both weekly and reads the

@@ -341,6 +341,18 @@ test.describe("organization identity", () => {
     }
   });
 
+  test("the page loads no third-party subresources except fonts", async ({ page }) => {
+    const external = [];
+    page.on("request", (r) => {
+      const host = new URL(r.url()).host;
+      if (host && !host.startsWith("localhost") && !/fonts\.(googleapis|gstatic)\.com$/.test(host)) {
+        external.push(`${r.resourceType()} ${r.url()}`);
+      }
+    });
+    await page.goto("/", { waitUntil: "networkidle" });
+    expect(external, external.join("\n")).toEqual([]);
+  });
+
   test("Drupal.org contributions are rendered server-side", async ({ page }) => {
     test.skip(!org.drupal?.enabled, "Drupal.org collection is disabled for this org.");
     // No JS: the section must still be present and readable.

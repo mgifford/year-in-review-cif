@@ -1,6 +1,7 @@
 module.exports = function (config) {
   config.addPassthroughCopy({ "metrics_data/data": "data" });
   config.addPassthroughCopy({ "metrics_data/drupal": "drupal" });
+  config.addPassthroughCopy({ "metrics_data/org": "org" });
   config.addPassthroughCopy("src/metrics-data.js");
 
   // Set pathPrefix from environment (set by GitHub Actions deploy workflow)

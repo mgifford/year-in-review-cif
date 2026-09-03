@@ -39,6 +39,9 @@ jobs:
       - name: Collect Drupal.org metrics
         run: python scripts/drupal_metrics.py
 
+      - name: Cache the organization logo
+        run: python scripts/fetch_org_logo.py
+
       - name: Keep only the newest GitHub snapshot
         run: |
           cd metrics_data/data
