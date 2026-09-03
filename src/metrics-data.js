@@ -9,6 +9,7 @@ const EMPTY_DATA = {
   love: { forks: 0, prsMerged: 0 },
   topRepos: [],
   locations: [],
+  error: true,
 };
 
 function sumBy(repos, key) {
@@ -43,6 +44,7 @@ function uniqueLocations(repos) {
 export async function loadYearInReviewData() {
   try {
     const res = await fetch(`data/${DATA_FILE}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const raw = await res.json();
     const repos = raw.repos || [];
 
@@ -62,6 +64,7 @@ export async function loadYearInReviewData() {
       },
       topRepos: topReposByCommits(repos),
       locations: uniqueLocations(repos),
+      error: false,
     };
   } catch (e) {
     console.error("Failed to load Year in Review data:", e);
