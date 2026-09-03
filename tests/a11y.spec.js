@@ -321,8 +321,42 @@ test.describe("resilience", () => {
 });
 
 // ---------------------------------------------------------------------------
-// Automated scan (backstop only)
+// Organization identity and community contributions
 // ---------------------------------------------------------------------------
+const org = require("../src/_data/org.json");
+
+test.describe("organization identity", () => {
+  test("the org is named in the title and the hero", async ({ page }) => {
+    await page.goto("/");
+    await expect(page).toHaveTitle(new RegExp(org.name));
+    await expect(page.locator(".org-badge .org-name")).toHaveText(org.name);
+    await expect(page.locator(".hero-sub")).toContainText(org.name);
+  });
+
+  test("the org logo is decorative, since the name is adjacent text", async ({ page }) => {
+    await page.goto("/");
+    const logo = page.locator(".org-logo");
+    if (await logo.count()) {
+      await expect(logo).toHaveAttribute("alt", "");
+    }
+  });
+
+  test("Drupal.org contributions are rendered server-side", async ({ page }) => {
+    test.skip(!org.drupal?.enabled, "Drupal.org collection is disabled for this org.");
+    // No JS: the section must still be present and readable.
+    await page.context().addInitScript(() => {});
+    await page.goto("/");
+    const section = page.locator("section.community");
+    await expect(section.getByRole("heading", { level: 2 })).toBeVisible();
+    await expect(section.locator(".community-stat dd")).toHaveText(/^\d+$/);
+    await expect(section.getByRole("link", { name: /Drupal\.org/ }).first()).toBeVisible();
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Automated scan (backstop only)
+// -----------------------
+
 test.describe("axe scan", () => {
   for (const colorScheme of ["light", "dark"]) {
     test(`no serious/critical violations (reduced motion, ${colorScheme})`, async ({

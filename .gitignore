@@ -66,4 +66,4 @@ _site/
 # Terraform
 .terraform/
 *.tfstate
-*.tfstate.*
+*.tfstate.*.venv/

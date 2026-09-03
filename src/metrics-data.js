@@ -1,9 +1,6 @@
-// Points at one generated snapshot from metrics_data/data/ (see scripts/generate_metrics.py).
-// Update this filename to feature a different run.
-const DATA_FILE = "metrics_2026-06-08_to_2026-08-07.json";
-
-// CivicActions metrics (fetch latest available)
-const CIVICACTIONS_DIR = "metrics_data/civicactions";
+// The build resolves the newest snapshot in metrics_data/data/ and exposes the
+// filename on window; the constant is only a fallback for direct file opening.
+const DATA_FILE = window.YIR_DATA_FILE || "metrics_2025-09-03_to_2026-09-03.json";
 
 const EMPTY_DATA = {
   period: { start: null, end: null },
@@ -12,22 +9,6 @@ const EMPTY_DATA = {
   love: { forks: 0, prsMerged: 0 },
   topRepos: [],
   locations: [],
-  error: true,
-};
-
-const EMPTY_CIVICACTIONS_DATA = {
-  organization: "civicactions",
-  period: { start: null, end: null, days: 365 },
-  orgInfo: {},
-  stats: {
-    stars: 0,
-    forks: 0,
-    watchers: 0,
-    repos_count: 0,
-    commits: 0,
-    contributors: 0,
-    prs_merged: 0,
-  },
   error: true,
 };
 
@@ -88,41 +69,5 @@ export async function loadYearInReviewData() {
   } catch (e) {
     console.error("Failed to load Year in Review data:", e);
     return EMPTY_DATA;
-  }
-}
-
-/**
- * Load latest CivicActions metrics from generated JSON.
- * Returns the most recent metrics file available.
- */
-export async function loadCivicActionsMetrics() {
-  try {
-    // Try to fetch the latest metrics
-    // Since we generate daily, we check a range of recent dates
-    const today = new Date();
-    
-    for (let daysBack = 0; daysBack < 7; daysBack++) {
-      const date = new Date(today);
-      date.setDate(date.getDate() - daysBack);
-      const dateStr = date.toISOString().split('T')[0];
-      
-      try {
-        const res = await fetch(`civicactions/metrics_${dateStr}.json`);
-        if (res.ok) {
-          const data = await res.json();
-          return { ...data, error: false };
-        }
-      } catch {
-        // Try next date
-        continue;
-      }
-    }
-    
-    // If no recent data found, return empty
-    console.warn("No recent CivicActions metrics found");
-    return EMPTY_CIVICACTIONS_DATA;
-  } catch (e) {
-    console.error("Failed to load CivicActions metrics:", e);
-    return EMPTY_CIVICACTIONS_DATA;
   }
 }

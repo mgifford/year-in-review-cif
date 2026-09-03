@@ -1,0 +1,57 @@
+name: Refresh metrics
+
+on:
+  schedule:
+    # Weekly, Monday 03:00 UTC. The window is a rolling year, so a daily run
+    # would mostly rewrite the same numbers and churn the repository.
+    - cron: '0 3 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt requests
+
+      - name: Read organization config
+        id: org
+        run: |
+          echo "github_org=$(jq -r '.github.org' src/_data/org.json)" >> "$GITHUB_OUTPUT"
+          echo "start=$(date -u -d '1 year ago' +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+          echo "end=$(date -u +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+
+      - name: Collect GitHub metrics
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ORG_NAME: ${{ steps.org.outputs.github_org }}
+        run: python scripts/generate_metrics.py "${{ steps.org.outputs.start }}" "${{ steps.org.outputs.end }}"
+
+      - name: Collect Drupal.org metrics
+        run: python scripts/drupal_metrics.py
+
+      - name: Keep only the newest GitHub snapshot
+        run: |
+          cd metrics_data/data
+          ls -1 metrics_*.json | sort | head -n -1 | xargs -r rm --
+
+      - name: Commit refreshed metrics
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add metrics_data/
+          if git diff --cached --quiet; then
+            echo "No metric changes to commit."
+          else
+            git commit -m "chore: refresh metrics for ${{ steps.org.outputs.start }} to ${{ steps.org.outputs.end }}"
+            git push
+          fi

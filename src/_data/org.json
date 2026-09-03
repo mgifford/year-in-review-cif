@@ -1,0 +1,16 @@
+{
+  "name": "CivicActions",
+  "tagline": "Open Source activity",
+  "url": "https://civicactions.com",
+  "logo": "https://github.com/CivicActions.png?size=160",
+  "github": {
+    "org": "CivicActions",
+    "url": "https://github.com/CivicActions"
+  },
+  "drupal": {
+    "enabled": true,
+    "orgTitle": "CivicActions",
+    "nid": 1121122,
+    "url": "https://www.drupal.org/civicactions"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-09-03T14:45:16.966939Z",
+  "source": "https://www.drupal.org/api-d7",
+  "organization": {
+    "title": "CivicActions",
+    "nid": 1121122,
+    "url": "https://www.drupal.org/civicactions",
+    "headquarters": "Lafayette, CA",
+    "offices": [
+      "Lafayette, CA"
+    ],
+    "badges": [
+      "certified_gold",
+      "drupalcares_2020_champion",
+      "drupal_ai_gold_sponsor"
+    ]
+  },
+  "stats": {
+    "issueCreditsYear": 418,
+    "issueCreditsRecent": 101,
+    "contributionScore": 1235
+  }
+}

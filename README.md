@@ -59,6 +59,58 @@ These guidelines outline agency-wide expectations for semantic versioning, relea
 This project is a monorepo with several apps. Please see the [api](./api/README.md) and [frontend](./frontend/README.md) READMEs for information on spinning up those projects locally. Also see the project [documentation](./documentation) for more info.
 -->
 
+```bash
+npm install
+npm start          # http://localhost:8080
+npm test           # accessibility regression suite
+```
+
+## Pointing this at a different organization
+
+All organization identity lives in [`src/_data/org.json`](./src/_data/org.json).
+Nothing else needs editing to retarget the site:
+
+```json
+{
+  "name": "Your Organization",
+  "url": "https://example.org",
+  "logo": "https://github.com/your-org.png?size=160",
+  "github": { "org": "your-org", "url": "https://github.com/your-org" },
+  "drupal": { "enabled": false }
+}
+```
+
+The name is used in the page title, the hero, the intro sentence and the footer.
+`logo` is optional — if it is absent, or the request fails, the image is dropped
+and the name alone is shown.
+
+Set `drupal.enabled` to `true` and give either a `nid` or an `orgTitle` to also
+report Drupal.org issue credits. `orgTitle` is looked up against the
+Drupal.org organization directory, so the node id is optional.
+
+Then regenerate the data:
+
+```bash
+python -m venv .venv && .venv/bin/pip install -r requirements.txt requests
+
+# GitHub: rolling one-year window
+GH_TOKEN=$(gh auth token) ORG_NAME=your-org \
+  .venv/bin/python scripts/generate_metrics.py 2025-09-03 2026-09-03
+
+# Drupal.org (reads src/_data/org.json; no credentials needed)
+.venv/bin/python scripts/drupal_metrics.py
+```
+
+`.github/workflows/refresh-metrics.yml` runs both weekly and reads the
+organization from the same config file.
+
+### A note on the Drupal.org numbers
+
+Drupal.org's public API refuses to filter issue credits by organization
+(`field_attribute_contribution_to` returns `403`), so per-issue detail is not
+available. The aggregate counters published on the organization node are used
+instead, and the page links to that node as its source.
+
 ## Coding Style and Linters
 
 <!-- TODO - Add the repo's linting and code style guidelines -->

@@ -16,7 +16,7 @@ eleventyExcludeFromCollections: true
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>A Year of Growth — Year in Review</title>
+<title>{{ org.name }} — Year in Review</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -110,6 +110,25 @@ eleventyExcludeFromCollections: true
     padding:2rem 1.5rem;
     position:relative;
   }
+  .org-badge{
+    display:flex;
+    align-items:center;
+    gap:.7rem;
+    margin:0 0 1.6rem;
+  }
+  .org-logo{
+    width:2.6rem;height:2.6rem;
+    border-radius:8px;
+    background:var(--surface);
+  }
+  .org-name{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.35rem;
+    color:var(--pine);
+    text-decoration:none;
+  }
+  .org-name:hover{text-decoration:underline}
   .hero .eyebrow{
     font-size:.85rem;
     letter-spacing:.28em;
@@ -363,6 +382,49 @@ eleventyExcludeFromCollections: true
     background:var(--tint);
     padding:5rem 1.5rem 6rem;
   }
+  .community{background:var(--sky);border-top:1px solid var(--line)}
+  .community-inner{align-items:center}
+  .community h2{
+    font-family:var(--display);
+    font-size:clamp(1.6rem,3.4vw,2.2rem);
+    color:var(--pine);
+    margin-bottom:.6rem;
+  }
+  .source-note{font-size:.85rem;color:var(--ink-soft);margin-top:1rem}
+  .community-stats{margin:0}
+  .community-stat{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:1.6rem;
+    text-align:center;
+    display:flex;
+    flex-direction:column-reverse;
+    gap:.4rem;
+  }
+  .community-stat dd{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:clamp(2.4rem,6vw,3.6rem);
+    line-height:1;
+    color:var(--pine);
+  }
+  .community-stat dt{
+    font-size:.78rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    font-weight:500;
+  }
+  .community .badge-heading{
+    font-family:var(--body);
+    font-size:.78rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    font-weight:600;
+    margin:1.6rem 0 .7rem;
+  }
   .detail-inner{
     max-width:960px;
     margin:0 auto;
@@ -429,6 +491,7 @@ eleventyExcludeFromCollections: true
     text-align:center;
     padding:3.5rem 1.5rem;
   }
+  footer a{color:inherit}
   footer .f-title{
     font-family:var(--display);
     font-size:1.5rem;
@@ -646,6 +709,7 @@ eleventyExcludeFromCollections: true
   d.setAttribute('data-theme', dark ? 'dark' : 'light');
 })();
 </script>
+<script>window.YIR_DATA_FILE = {{ datafiles.github | dump | safe }};</script>
 </head>
 <body>
 
@@ -704,9 +768,13 @@ eleventyExcludeFromCollections: true
       </nav>
     </div>
   </div>
+  <p class="org-badge">
+    {% if org.logo %}<img class="org-logo" src="{{ org.logo }}" alt="" width="56" height="56" onerror="this.remove()">{% endif %}
+    <a class="org-name" href="{{ org.url }}">{{ org.name }}</a>
+  </p>
   <div class="eyebrow" id="eyebrowPeriod">Year in Review</div>
   <h1>Every commit is a <em>seed.</em></h1>
-  <p><span id="durationLabel">Twelve months</span> of Open Source activity, told as it happened: something small, planted in spring, that would not stop growing.</p>
+  <p class="hero-sub"><span id="durationLabel">Twelve months</span> of {{ org.tagline }} at {{ org.name }}, told as it happened: something small, planted in spring, that would not stop growing.</p>
   <svg class="seed" viewBox="0 0 64 64" aria-hidden="true">
     <path d="M32 54 V34" stroke="#3A6B4E" stroke-width="3" stroke-linecap="round"/>
     <path d="M32 38 C 24 34, 20 26, 22 18 C 30 20, 34 28, 32 38 Z" fill="#8FB878"/>
@@ -843,11 +911,45 @@ eleventyExcludeFromCollections: true
   </div>
 </section>
 
+{% if drupal %}
+<section class="detail community" aria-labelledby="drupal-heading">
+  <div class="detail-inner community-inner">
+    <div>
+      <h2 id="drupal-heading">Beyond our own repositories</h2>
+      <p class="sub">
+        Not all of the work happens in {{ org.name }}&rsquo;s own repositories. On
+        <a href="https://www.drupal.org/">Drupal.org</a>, contributions are recognised as
+        <a href="https://www.drupal.org/drupalorg/docs/marketplace/how-organizations-are-ranked">issue credits</a>
+        &mdash; one credit for each accepted contribution to a Drupal project.
+      </p>
+      <p class="source-note">
+        Source:
+        <a href="{{ drupal.organization.url }}">{{ drupal.organization.title }} on Drupal.org</a>.
+      </p>
+    </div>
+    <div>
+      <dl class="community-stats">
+        <div class="community-stat">
+          <dt>Drupal.org issue credits, past year</dt>
+          <dd>{{ drupal.stats.issueCreditsYear }}</dd>
+        </div>
+      </dl>
+      {% if drupal.badgeLabels.length %}
+      <h3 class="badge-heading">Community recognition</h3>
+      <ul class="loc-list" role="list">
+        {% for badge in drupal.badgeLabels %}<li>{{ badge }}</li>{% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
 </main>
 
 <footer>
   <div class="f-title">Heat 🔥 &nbsp; Light ☀️ &nbsp; Love 🌸</div>
-  <p>A year of growth in open source. Data updates with each release — patches always welcome.</p>
+  <p>A year of growth in open source at <a href="{{ org.url }}">{{ org.name }}</a>. Data updates with each release — patches always welcome.</p>
 </footer>
 
 <noscript>
