@@ -99,22 +99,30 @@ eleventyExcludeFromCollections: true
   }
   ::selection{background:var(--sun);color:var(--ink)}
 
-  /* ---------- Hero ---------- */
+  /* ---------- Hero ----------
+     Equal 1fr rows above and below centre the main block in the whole viewport,
+     the way absolute positioning used to, while the hint stays in flow so it
+     can never be overlapped. When space is tight the rows yield to content. */
   .hero{
     min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:flex-start;
+    display:grid;
+    grid-template-rows:1fr auto 1fr;
+    justify-items:center;
     text-align:center;
     padding:2rem 1.5rem;
     position:relative;
   }
-  .org-badge{
+  .hero-main{
+    grid-row:2;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .hero .org-badge{
     display:flex;
     align-items:center;
     gap:.7rem;
-    margin:auto 0 1.6rem;
+    margin:0 0 1.6rem;
   }
   .org-logo{
     width:2.6rem;height:2.6rem;
@@ -165,9 +173,9 @@ eleventyExcludeFromCollections: true
   }
   @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
   .scroll-hint{
-    /* In normal flow, so it can never collide with the plant above it. The auto
-       margin still pins it to the bottom whenever the viewport has room. */
-    margin-top:auto;
+    /* In normal flow, so it can never collide with the plant above it. */
+    grid-row:3;
+    align-self:end;
     padding-top:2rem;
     font-size:.8rem;
     letter-spacing:.2em;
@@ -783,20 +791,22 @@ eleventyExcludeFromCollections: true
       </nav>
     </div>
   </div>
-  <p class="org-badge">
-    {% set logo = orgLogo or org.logo %}
-    {% if logo %}<img class="org-logo" src="{{ logo }}" alt="" width="56" height="56" onerror="this.remove()">{% endif %}
-    <a class="org-name" href="{{ org.url }}">{{ org.name }}</a>
-  </p>
-  <div class="eyebrow" id="eyebrowPeriod">Year in Review</div>
-  <h1>Every commit is a <em>seed.</em></h1>
-  <p class="hero-sub"><span id="durationLabel">Twelve months</span> of {{ org.tagline }} at {{ org.name }}, told as it happened: something small, planted in spring, that would not stop growing.</p>
-  <svg class="seed" viewBox="0 0 64 64" aria-hidden="true">
-    <path d="M32 54 V34" stroke="#3A6B4E" stroke-width="3" stroke-linecap="round"/>
-    <path d="M32 38 C 24 34, 20 26, 22 18 C 30 20, 34 28, 32 38 Z" fill="#8FB878"/>
-    <path d="M32 34 C 40 30, 44 22, 42 14 C 34 16, 30 24, 32 34 Z" fill="#5D8F5F"/>
-    <ellipse cx="32" cy="56" rx="14" ry="3.5" fill="#6B4A32" opacity=".35"/>
-  </svg>
+  <div class="hero-main">
+    <p class="org-badge">
+      {% set logo = orgLogo or org.logo %}
+      {% if logo %}<img class="org-logo" src="{{ logo }}" alt="" width="56" height="56" onerror="this.remove()">{% endif %}
+      <a class="org-name" href="{{ org.url }}">{{ org.name }}</a>
+    </p>
+    <div class="eyebrow" id="eyebrowPeriod">Year in Review</div>
+    <h1>Every commit is a <em>seed.</em></h1>
+    <p class="hero-sub"><span id="durationLabel">Twelve months</span> of {{ org.tagline }} at {{ org.name }}, told as it happened: something small, planted in spring, that would not stop growing.</p>
+    <svg class="seed" viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M32 54 V34" stroke="#3A6B4E" stroke-width="3" stroke-linecap="round"/>
+      <path d="M32 38 C 24 34, 20 26, 22 18 C 30 20, 34 28, 32 38 Z" fill="#8FB878"/>
+      <path d="M32 34 C 40 30, 44 22, 42 14 C 34 16, 30 24, 32 34 Z" fill="#5D8F5F"/>
+      <ellipse cx="32" cy="56" rx="14" ry="3.5" fill="#6B4A32" opacity=".35"/>
+    </svg>
+  </div>
   <div class="scroll-hint">Scroll or use Page Down to follow the story</div>
 </header>
 
