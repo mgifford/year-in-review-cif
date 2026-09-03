@@ -119,7 +119,7 @@ test.describe("full motion", () => {
 // 3. Keyboard navigation
 // ---------------------------------------------------------------------------
 test.describe("keyboard", () => {
-  test("skip link, motion control, and chapter nav are reachable in order", async ({
+  test("skip link, display tool, and chapter tool are reachable in order", async ({
     page,
   }) => {
     await page.goto("/");
@@ -129,20 +129,34 @@ test.describe("keyboard", () => {
     let focused = await page.evaluate(() => document.activeElement.textContent.trim());
     expect(focused).toBe("Skip animated story");
 
-    // Next focus is the motion control.
+    // Next focus is the display settings disclosure, collapsed by default.
     await page.keyboard.press("Tab");
-    let id = await page.evaluate(() => document.activeElement.id);
-    expect(id).toBe("motionPref");
-
-    // Then the chapter navigation links.
-    await page.keyboard.press("Tab");
-    focused = await page.evaluate(() => ({
-      tag: document.activeElement.tagName,
-      text: document.activeElement.textContent.trim(),
-      inNav: !!document.activeElement.closest("nav.chapter-nav"),
+    let state = await page.evaluate(() => ({
+      id: document.activeElement.id,
+      expanded: document.activeElement.getAttribute("aria-expanded"),
     }));
-    expect(focused.tag).toBe("A");
-    expect(focused.inNav).toBe(true);
+    expect(state.id).toBe("displayBtn");
+    expect(state.expanded).toBe("false");
+
+    // Then the chapters disclosure.
+    await page.keyboard.press("Tab");
+    state = await page.evaluate(() => document.activeElement.id);
+    expect(state).toBe("chaptersBtn");
+  });
+
+  test("the chapters disclosure opens, exposes links, and Escape restores focus", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    await page.click("#chaptersBtn");
+    await expect(page.locator("#chaptersBtn")).toHaveAttribute("aria-expanded", "true");
+
+    const link = page.locator("nav.chapter-nav a", { hasText: "Roots" });
+    await expect(link).toBeVisible();
+
+    await page.keyboard.press("Escape");
+    await expect(page.locator("#chaptersBtn")).toHaveAttribute("aria-expanded", "false");
+    expect(await page.evaluate(() => document.activeElement.id)).toBe("chaptersBtn");
   });
 
   test("Enter activates the skip link and moves to the metrics summary", async ({
@@ -190,6 +204,7 @@ test.describe("motion preference control", () => {
   test("explicit choices override the system preference", async ({ page }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/");
+    await page.click("#displayBtn");
     await page.selectOption("#motionPref", "full");
     await expect(page.locator("html")).toHaveAttribute("data-motion", "full");
 
@@ -202,6 +217,7 @@ test.describe("motion preference control", () => {
     page,
   }) => {
     await page.goto("/");
+    await page.click("#displayBtn");
     await page.selectOption("#motionPref", "full");
     expect(await page.evaluate(() => localStorage.getItem("yir-motion"))).toBe("full");
 
@@ -209,8 +225,43 @@ test.describe("motion preference control", () => {
     await expect(page.locator("#motionPref")).toHaveValue("full");
     await expect(page.locator("html")).toHaveAttribute("data-motion", "full");
 
+    await page.click("#displayBtn");
     await page.selectOption("#motionPref", "system");
     expect(await page.evaluate(() => localStorage.getItem("yir-motion"))).toBeNull();
+  });
+});
+
+// ---------------------------------------------------------------------------
+// 4b. Colour theme control
+// ---------------------------------------------------------------------------
+test.describe("colour theme control", () => {
+  test("follow-system responds to a system colour-scheme change", async ({ page }) => {
+    await page.emulateMedia({ colorScheme: "dark" });
+    await page.goto("/");
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+
+    await page.emulateMedia({ colorScheme: "light" });
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+  });
+
+  test("an explicit theme overrides the system and persists across reload", async ({
+    page,
+  }) => {
+    await page.emulateMedia({ colorScheme: "light" });
+    await page.goto("/");
+    await page.click("#displayBtn");
+    await page.selectOption("#themePref", "dark");
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+    expect(await page.evaluate(() => localStorage.getItem("yir-theme"))).toBe("dark");
+
+    await page.reload();
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+    await expect(page.locator("#themePref")).toHaveValue("dark");
+
+    await page.click("#displayBtn");
+    await page.selectOption("#themePref", "system");
+    expect(await page.evaluate(() => localStorage.getItem("yir-theme"))).toBeNull();
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
   });
 });
 
@@ -273,18 +324,24 @@ test.describe("resilience", () => {
 // Automated scan (backstop only)
 // ---------------------------------------------------------------------------
 test.describe("axe scan", () => {
-  test("no serious/critical violations (reduced motion)", async ({ page }) => {
-    await page.emulateMedia({ reducedMotion: "reduce" });
-    await page.goto("/");
-    await page.waitForSelector('#metricLabels dd[data-metric="heat.commits"]:not(:has-text("—"))', {
-      timeout: 5000,
-    }).catch(() => {});
-    const results = await new AxeBuilder({ page })
-      .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
-      .analyze();
-    const serious = results.violations.filter((v) =>
-      ["serious", "critical"].includes(v.impact)
-    );
-    expect(serious, JSON.stringify(serious.map((v) => v.id), null, 2)).toEqual([]);
-  });
+  for (const colorScheme of ["light", "dark"]) {
+    test(`no serious/critical violations (reduced motion, ${colorScheme})`, async ({
+      page,
+    }) => {
+      await page.emulateMedia({ reducedMotion: "reduce", colorScheme });
+      await page.goto("/");
+      await page.waitForSelector('#metricLabels dd[data-metric="heat.commits"]:not(:has-text("—"))', {
+        timeout: 5000,
+      }).catch(() => {});
+      // Open the tool panels so their contents are in scope for the scan.
+      await page.click("#displayBtn");
+      const results = await new AxeBuilder({ page })
+        .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
+        .analyze();
+      const serious = results.violations.filter((v) =>
+        ["serious", "critical"].includes(v.impact)
+      );
+      expect(serious, JSON.stringify(serious.map((v) => v.id), null, 2)).toEqual([]);
+    });
+  }
 });

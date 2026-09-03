@@ -33,9 +33,59 @@ eleventyExcludeFromCollections: true
     --blossom:#E58FA2;
     --ink:#1B2A22;
     --ink-soft:#4A5A50;
+    --surface:#ffffff;
     --card:rgba(255,255,255,0.82);
+    --tint:#EDF4EA;
+    --sky-top:#F2F6EC;
+    --forest-mid:#C9DCCB;
+    --forest-deep:#B9D1BC;
+    --on-pine:#ffffff;
+    --line:rgba(30,70,51,.16);
+    --line-strong:rgba(30,70,51,.28);
+    --error-fg:#7A1A1A;
+    --error-bg:#FBEAEA;
+    --error-line:#D08A8A;
+    --viz-1:#2F5D40;
+    --viz-2:#5D8F5F;
+    --viz-3:#3A6B4E;
+    --viz-tree:#9BBE9B;
+    --viz-ground:#8FB878;
     --display:'Fraunces', Georgia, 'Times New Roman', serif;
     --body:'Outfit', -apple-system, 'Segoe UI', sans-serif;
+  }
+
+  /* Dark palette. The pre-paint script resolves "follow system" to an explicit
+     data-theme, so only this one selector is needed once JS runs. */
+  html[data-theme="dark"]{
+    --sky:#0F1713;
+    --sky-deep:#16221B;
+    --pine:#9FD3B0;
+    --pine-light:#7FB894;
+    --leaf:#7FB08A;
+    --leaf-young:#B9DC9E;
+    --bark:#C09070;
+    --sun:#F0C46A;
+    --blossom:#F0A3B4;
+    --ink:#E7EFE9;
+    --ink-soft:#B3C6B9;
+    --surface:#1B2A22;
+    --card:rgba(27,42,34,.86);
+    --tint:#15221B;
+    --sky-top:#16241C;
+    --forest-mid:#132019;
+    --forest-deep:#0C140F;
+    --on-pine:#08120C;
+    --line:rgba(159,211,176,.24);
+    --line-strong:rgba(159,211,176,.42);
+    --error-fg:#FFC9C9;
+    --error-bg:#33191B;
+    --error-line:#96585A;
+    --viz-1:#8FBF9E;
+    --viz-2:#B3D89B;
+    --viz-3:#7FB894;
+    --viz-tree:#6E9478;
+    --viz-ground:#5D8F5F;
+    color-scheme:dark;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:auto}
@@ -121,7 +171,7 @@ eleventyExcludeFromCollections: true
      Full motion only: tall scroll runway + sticky stage. */
   .growth-track{
     position:relative;
-    background:linear-gradient(to top, var(--sky-deep) 0%, var(--sky) 55%, #F2F6EC 100%);
+    background:linear-gradient(to top, var(--sky-deep) 0%, var(--sky) 55%, var(--sky-top) 100%);
   }
   html[data-motion="full"] .growth-track{
     /* tall runway: the tree grows across this whole distance */
@@ -137,7 +187,7 @@ eleventyExcludeFromCollections: true
     position:sticky;
     top:0;
     height:100vh;
-    background:linear-gradient(to top, var(--sky-deep) 0%, var(--sky) 55%, #F2F6EC 100%);
+    background:linear-gradient(to top, var(--sky-deep) 0%, var(--sky) 55%, var(--sky-top) 100%);
   }
   .tree-stage svg{
     display:block;
@@ -202,7 +252,7 @@ eleventyExcludeFromCollections: true
     max-width:380px;
     background:var(--card);
     backdrop-filter:blur(10px);
-    border:1px solid rgba(30,70,51,.14);
+    border:1px solid var(--line);
     border-radius:18px;
     padding:1.8rem 1.9rem;
     box-shadow:0 18px 44px -18px rgba(27,42,34,.25);
@@ -239,7 +289,7 @@ eleventyExcludeFromCollections: true
     gap:1.6rem;
     margin-top:1.2rem;
     padding-top:1.1rem;
-    border-top:1px dashed rgba(30,70,51,.25);
+    border-top:1px dashed var(--line-strong);
   }
   .panel .stat b{
     display:block;
@@ -258,7 +308,7 @@ eleventyExcludeFromCollections: true
   /* ---------- Forest finale ---------- */
   .forest-section{
     position:relative;
-    background:linear-gradient(to bottom, var(--sky-deep), #C9DCCB 30%, #B9D1BC);
+    background:linear-gradient(to bottom, var(--sky-deep), var(--forest-mid) 30%, var(--forest-deep));
     padding:6rem 0 0;
   }
   .forest-head{
@@ -282,11 +332,11 @@ eleventyExcludeFromCollections: true
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
     gap:1px;
-    background:rgba(30,70,51,.15);
-    border-top:1px solid rgba(30,70,51,.15);
+    background:var(--line);
+    border-top:1px solid var(--line);
   }
   .metric-cell{
-    background:#EDF4EA;
+    background:var(--tint);
     padding:1.6rem 1.2rem 1.8rem;
     text-align:center;
     display:flex;
@@ -310,7 +360,7 @@ eleventyExcludeFromCollections: true
 
   /* ---------- Repos & locations ---------- */
   .detail{
-    background:#EDF4EA;
+    background:var(--tint);
     padding:5rem 1.5rem 6rem;
   }
   .detail-inner{
@@ -331,7 +381,7 @@ eleventyExcludeFromCollections: true
   .repo-list{list-style:none;margin:0;padding:0}
   .repo-list li{
     padding:.65rem 0;
-    border-bottom:1px dashed rgba(30,70,51,.22);
+    border-bottom:1px dashed var(--line);
     font-size:.95rem;
   }
   .repo-row{
@@ -365,8 +415,8 @@ eleventyExcludeFromCollections: true
   }
   .loc-list{list-style:none;display:flex;flex-wrap:wrap;gap:.55rem}
   .loc-list li{
-    background:#fff;
-    border:1px solid rgba(30,70,51,.16);
+    background:var(--surface);
+    border:1px solid var(--line);
     border-radius:99px;
     padding:.42rem .95rem;
     font-size:.88rem;
@@ -375,7 +425,7 @@ eleventyExcludeFromCollections: true
   /* ---------- Footer ---------- */
   footer{
     background:var(--pine);
-    color:#DFEBDD;
+    color:var(--on-pine);
     text-align:center;
     padding:3.5rem 1.5rem;
   }
@@ -400,7 +450,7 @@ eleventyExcludeFromCollections: true
     top:-5rem;
     z-index:1000;
     background:var(--pine);
-    color:#fff;
+    color:var(--on-pine);
     padding:.7rem 1.1rem;
     border-radius:0 0 10px 10px;
     font-weight:600;
@@ -430,49 +480,95 @@ eleventyExcludeFromCollections: true
   /* Page tools appear only when JS can wire them up. */
   .page-tools{
     display:none;
-    width:100%;
-    flex-wrap:wrap;
-    align-items:center;
-    justify-content:center;
-    gap:.75rem 1.5rem;
-    padding:.7rem 1rem;
-    background:var(--card);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid rgba(30,70,51,.16);
+    position:fixed;
+    top:.6rem;
+    right:.6rem;
+    z-index:900;
+    gap:.4rem;
+    align-items:flex-start;
   }
   html.js .page-tools{display:flex}
-  .motion-control{
-    display:flex;
+
+  .tool{position:relative}
+  .tool-btn{
+    display:inline-flex;
     align-items:center;
-    gap:.5rem;
-    font-size:.85rem;
-    color:var(--ink);
+    gap:.4rem;
+    font:inherit;
+    font-size:.82rem;
+    line-height:1;
+    padding:.45rem .7rem;
+    min-height:2.75rem;
+    color:var(--pine);
+    background:var(--card);
+    backdrop-filter:blur(6px);
+    border:1px solid var(--line-strong);
+    border-radius:99px;
+    cursor:pointer;
   }
-  .motion-control select{
+  .tool-btn:hover{background:var(--surface)}
+  .tool-btn[aria-expanded="true"]{background:var(--surface);border-color:var(--pine)}
+  .tool-icon{width:1.35rem;height:1.35rem;flex:none;fill:currentColor}
+  .tool-chevron{width:.7rem;height:.7rem;flex:none;fill:currentColor;transition:transform .15s ease}
+  .tool-btn[aria-expanded="true"] .tool-chevron{transform:rotate(180deg)}
+  @media (prefers-reduced-motion:reduce){.tool-chevron{transition:none}}
+
+  .tool-panel{
+    position:absolute;
+    top:calc(100% + .4rem);
+    right:0;
+    min-width:15rem;
+    max-width:min(20rem, calc(100vw - 1.2rem));
+    padding:1rem;
+    text-align:left;
+    background:var(--surface);
+    border:1px solid var(--line-strong);
+    border-radius:12px;
+    box-shadow:0 10px 28px rgba(0,0,0,.18);
+  }
+  .tool-panel[hidden]{display:none}
+  .tool-panel h2{
+    font-family:var(--body);
+    font-size:.95rem;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:.3rem;
+  }
+  .tool-hint{
+    font-size:.78rem;
+    color:var(--ink-soft);
+    margin-bottom:.8rem;
+  }
+  .tool-field{display:flex;flex-direction:column;gap:.25rem;margin-bottom:.75rem}
+  .tool-field:last-child{margin-bottom:0}
+  .tool-field label{font-size:.82rem;font-weight:500;color:var(--ink)}
+  .tool-field select{
     font:inherit;
     font-size:.85rem;
-    padding:.3rem .6rem;
+    padding:.45rem .6rem;
     border:1px solid var(--pine-light);
     border-radius:8px;
-    background:#fff;
+    background:var(--surface);
     color:var(--ink);
   }
+
   .chapter-nav ol{
     list-style:none;
     display:flex;
-    flex-wrap:wrap;
-    gap:.4rem .6rem;
+    flex-direction:column;
+    gap:.25rem;
     margin:0;padding:0;
-    font-size:.85rem;
+    font-size:.88rem;
   }
   .chapter-nav a{
+    display:block;
     color:var(--pine);
     text-decoration:none;
-    padding:.25rem .65rem;
-    border:1px solid rgba(30,70,51,.28);
-    border-radius:99px;
+    padding:.5rem .7rem;
+    border:1px solid var(--line-strong);
+    border-radius:8px;
   }
-  .chapter-nav a:hover{background:#fff}
+  .chapter-nav a:hover{background:var(--sky)}
 
   /* Metrics summary status / error region. */
   .metrics-status{
@@ -485,16 +581,29 @@ eleventyExcludeFromCollections: true
   }
   .metrics-status[hidden]{display:none}
   .metrics-status.error{
-    color:#7A1A1A;
-    background:#FBEAEA;
-    border:1px solid #D08A8A;
+    color:var(--error-fg);
+    background:var(--error-bg);
+    border:1px solid var(--error-line);
     border-radius:10px;
     font-weight:500;
   }
 
   /* ---------- User preference media queries ---------- */
+  /* Without JS the theme cannot be resolved, so honour the OS setting directly. */
+  @media (prefers-color-scheme:dark){
+    html.no-js{
+      --sky:#0F1713;--sky-deep:#16221B;--pine:#9FD3B0;--pine-light:#7FB894;
+      --leaf:#7FB08A;--leaf-young:#B9DC9E;--bark:#C09070;--sun:#F0C46A;
+      --blossom:#F0A3B4;--ink:#E7EFE9;--ink-soft:#B3C6B9;--surface:#1B2A22;
+      --card:rgba(27,42,34,.86);--on-pine:#08120C;
+      --line:rgba(159,211,176,.24);--line-strong:rgba(159,211,176,.42);
+      --viz-1:#8FBF9E;--viz-2:#B3D89B;--viz-3:#7FB894;
+      --viz-tree:#6E9478;--viz-ground:#5D8F5F;
+      color-scheme:dark;
+    }
+  }
   @media (forced-colors:active){
-    .panel,.metric-cell,.loc-list li,.chapter-nav a,.page-tools,.motion-control select{
+    .panel,.metric-cell,.loc-list li,.chapter-nav a,.tool-btn,.tool-panel{
       background:Canvas;color:CanvasText;border-color:CanvasText;backdrop-filter:none;
     }
     .skip-link{background:Canvas;color:CanvasText;border:1px solid CanvasText}
@@ -502,33 +611,39 @@ eleventyExcludeFromCollections: true
     .repo-list .bar{background:CanvasText}
   }
   @media (prefers-contrast:more){
-    :root{--ink:#0B140E;--ink-soft:#20302A;--card:#fff}
+    :root{--ink-soft:#20302A;--card:var(--surface);--line:var(--pine);--line-strong:var(--pine)}
+    html[data-theme="dark"]{--ink-soft:#DCE8E0}
     .panel,.metric-cell,.loc-list li{border-color:var(--pine);border-width:2px}
     .panel{box-shadow:none}
-    .chapter-nav a,.motion-control select{border-color:var(--pine)}
+    .chapter-nav a,.tool-field select,.tool-btn{border-color:var(--pine)}
   }
   @media (prefers-reduced-transparency:reduce){
-    :root{--card:#fff}
-    .panel,.stage-caption,.page-tools{backdrop-filter:none;background:#fff}
+    :root{--card:var(--surface)}
+    .panel,.stage-caption,.tool-btn{backdrop-filter:none;background:var(--surface)}
   }
 </style>
 <script>
-/* Resolve the effective motion preference before first paint so the static
-   baseline is the default and there is no flash of motion. Without JS this
-   never runs, so the page stays in its static baseline. */
+/* Resolve the effective motion and colour preferences before first paint, so the
+   static baseline is the default and there is no flash of motion or of the wrong
+   theme. Without JS this never runs and the CSS falls back to the OS setting. */
 (function(){
   var d = document.documentElement;
   d.classList.remove('no-js');
   d.classList.add('js');
-  var stored = null;
-  try { stored = localStorage.getItem('yir-motion'); } catch (e) {}
-  var systemReduce = false;
-  try { systemReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
-  var full;
-  if (stored === 'full') full = true;
-  else if (stored === 'reduce') full = false;
-  else full = !systemReduce;               /* follow system */
+  function stored(k){ try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function media(q){ try { return window.matchMedia(q).matches; } catch (e) { return false; } }
+
+  var motion = stored('yir-motion');
+  var full = motion === 'full' ? true
+           : motion === 'reduce' ? false
+           : !media('(prefers-reduced-motion: reduce)');
   d.setAttribute('data-motion', full ? 'full' : 'reduced');
+
+  var theme = stored('yir-theme');
+  var dark = theme === 'dark' ? true
+           : theme === 'light' ? false
+           : media('(prefers-color-scheme: dark)');
+  d.setAttribute('data-theme', dark ? 'dark' : 'light');
 })();
 </script>
 </head>
@@ -539,22 +654,55 @@ eleventyExcludeFromCollections: true
 <!-- ============ HERO ============ -->
 <header class="hero">
   <div class="page-tools">
-    <div class="motion-control">
-      <label for="motionPref">Motion</label>
-      <select id="motionPref">
-        <option value="system">Follow system</option>
-        <option value="reduce">Reduce motion</option>
-        <option value="full">Full motion</option>
-      </select>
+    <div class="tool" data-tool>
+      <button type="button" class="tool-btn" id="displayBtn" aria-expanded="false" aria-controls="displayPanel">
+        <svg class="tool-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="12" cy="5.9" r="1.7"/>
+          <path d="M5.6 9.1a.95.95 0 0 1 .5-1.2c1.9-.75 3.9-1.1 5.9-1.1s4 .35 5.9 1.1a.95.95 0 1 1-.7 1.77c-1.1-.44-2.2-.72-3.35-.86v2.6c0 .5.08 1 .25 1.47l2.2 6.06a.95.95 0 1 1-1.79.65L12.4 15h-.8l-2.11 4.6a.95.95 0 1 1-1.79-.66l2.2-6.05c.17-.47.25-.97.25-1.47v-2.6c-1.15.14-2.28.42-3.35.86a.95.95 0 0 1-1.2-.58Z"/>
+        </svg>
+        <span>Display</span>
+        <svg class="tool-chevron" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M0 0h10L5 6z"/></svg>
+      </button>
+      <div class="tool-panel" id="displayPanel" hidden>
+        <h2>Display settings</h2>
+        <p class="tool-hint">&ldquo;Follow system&rdquo; uses the motion and colour settings from your browser or operating system.</p>
+        <div class="tool-field">
+          <label for="motionPref">Motion</label>
+          <select id="motionPref">
+            <option value="system">Follow system</option>
+            <option value="reduce">Reduce motion</option>
+            <option value="full">Full motion</option>
+          </select>
+        </div>
+        <div class="tool-field">
+          <label for="themePref">Colour theme</label>
+          <select id="themePref">
+            <option value="system">Follow system</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </div>
+      </div>
     </div>
-    <nav class="chapter-nav" aria-label="Chapters">
-      <ol role="list">
-        <li><a href="#chapter-roots">Roots</a></li>
-        <li><a href="#chapter-heat">Heat</a></li>
-        <li><a href="#chapter-light">Light</a></li>
-        <li><a href="#chapter-love">Love</a></li>
-      </ol>
-    </nav>
+
+    <div class="tool" data-tool>
+      <button type="button" class="tool-btn" id="chaptersBtn" aria-expanded="false" aria-controls="chaptersPanel">
+        <svg class="tool-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M4 6h16v1.8H4zm0 5.1h16v1.8H4zm0 5.1h16V18H4z"/>
+        </svg>
+        <span>Chapters</span>
+        <svg class="tool-chevron" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M0 0h10L5 6z"/></svg>
+      </button>
+      <nav class="tool-panel chapter-nav" id="chaptersPanel" aria-label="Chapters" hidden>
+        <ol role="list">
+          <li><a href="#chapter-roots">Roots</a></li>
+          <li><a href="#chapter-heat">Heat</a></li>
+          <li><a href="#chapter-light">Light</a></li>
+          <li><a href="#chapter-love">Love</a></li>
+        </ol>
+      </nav>
+    </div>
   </div>
   <div class="eyebrow" id="eyebrowPeriod">Year in Review</div>
   <h1>Every commit is a <em>seed.</em></h1>
@@ -978,14 +1126,81 @@ else if(mq.addListener) mq.addListener(onSystemChange);
 // Set the initial scene before data arrives (avoids a flash of motion).
 applyMotion();
 
+/* ---------------- Colour theme control ---------------- */
+const themeSelect = document.getElementById('themePref');
+const THEME_KEY = 'yir-theme';
+const darkMq = window.matchMedia('(prefers-color-scheme: dark)');
+
+function applyTheme(){
+  const pref = themeSelect ? themeSelect.value : 'system';
+  const dark = pref === 'dark' || (pref === 'system' && darkMq.matches);
+  root.setAttribute('data-theme', dark ? 'dark' : 'light');
+}
+
+if(themeSelect){
+  let storedTheme = null;
+  try { storedTheme = localStorage.getItem(THEME_KEY); } catch(e){}
+  themeSelect.value = storedTheme || 'system';
+  themeSelect.addEventListener('change', ()=>{
+    try {
+      if(themeSelect.value === 'system') localStorage.removeItem(THEME_KEY);
+      else localStorage.setItem(THEME_KEY, themeSelect.value);
+    } catch(e){}
+    applyTheme();
+  });
+}
+const onThemeSystemChange = ()=>{ if((themeSelect ? themeSelect.value : 'system') === 'system') applyTheme(); };
+if(darkMq.addEventListener) darkMq.addEventListener('change', onThemeSystemChange);
+else if(darkMq.addListener) darkMq.addListener(onThemeSystemChange);
+applyTheme();
+
+/* ---------------- Page tool disclosures ---------------- */
+(function toolDisclosures(){
+  const tools = [...document.querySelectorAll('[data-tool]')].map(tool => ({
+    button: tool.querySelector('.tool-btn'),
+    panel: tool.querySelector('.tool-panel'),
+    tool,
+  })).filter(t => t.button && t.panel);
+
+  function close(t){
+    t.panel.hidden = true;
+    t.button.setAttribute('aria-expanded', 'false');
+  }
+  function closeAll(except){ tools.forEach(t => { if(t !== except) close(t); }); }
+
+  tools.forEach(t => {
+    t.button.addEventListener('click', ()=>{
+      const open = t.button.getAttribute('aria-expanded') === 'true';
+      closeAll(t);
+      t.panel.hidden = open;
+      t.button.setAttribute('aria-expanded', String(!open));
+    });
+
+    t.tool.addEventListener('keydown', (e)=>{
+      if(e.key !== 'Escape' || t.panel.hidden) return;
+      close(t);
+      t.button.focus();
+    });
+
+    // Closing on focusout keeps the panel out of the way for keyboard users.
+    t.tool.addEventListener('focusout', ()=>{
+      requestAnimationFrame(()=>{ if(!t.tool.contains(document.activeElement)) close(t); });
+    });
+  });
+
+  document.addEventListener('click', (e)=>{
+    if(!e.target.closest('[data-tool]')) closeAll(null);
+  });
+})();
+
 /* ---------------- Forest finale ---------------- */
 const METRICS = [
-  { label:'Commits',    key:'heat.commits',   hue:'#2F5D40' },
-  { label:'Committers', key:'heat.committers',hue:'#5D8F5F' },
-  { label:'Watchers',   key:'light.watchers', hue:'#3A6B4E' },
-  { label:'Stars',      key:'light.stars',    hue:'#2F5D40' },
-  { label:'Forks',      key:'love.forks',     hue:'#5D8F5F' },
-  { label:'PRs merged', key:'love.prsMerged', hue:'#3A6B4E' }
+  { label:'Commits',    key:'heat.commits',   hue:'var(--viz-1)' },
+  { label:'Committers', key:'heat.committers',hue:'var(--viz-2)' },
+  { label:'Watchers',   key:'light.watchers', hue:'var(--viz-3)' },
+  { label:'Stars',      key:'light.stars',    hue:'var(--viz-1)' },
+  { label:'Forks',      key:'love.forks',     hue:'var(--viz-2)' },
+  { label:'PRs merged', key:'love.prsMerged', hue:'var(--viz-3)' }
 ];
 function buildForest(){
   const svg = document.getElementById('forestSvg');
@@ -1000,14 +1215,14 @@ function buildForest(){
     const x = 30 + rand()*(W-60), h = 40 + rand()*70, w = h*0.55;
     const t = document.createElementNS(NS,'path');
     t.setAttribute('d', `M${x} ${groundY-4} L${x-w/2} ${groundY-4} L${x} ${groundY-4-h} L${x+w/2} ${groundY-4} Z`);
-    t.setAttribute('fill', '#9BBE9B');
+    t.setAttribute('fill', 'var(--viz-tree)');
     t.setAttribute('opacity', 0.35 + rand()*0.2);
     svg.appendChild(t);
   }
   // ground
   const ground = document.createElementNS(NS,'path');
   ground.setAttribute('d', `M0 ${groundY} Q ${W/2} ${groundY-14} ${W} ${groundY} L ${W} 420 L 0 420 Z`);
-  ground.setAttribute('fill', '#8FB878');
+  ground.setAttribute('fill', 'var(--viz-ground)');
   svg.appendChild(ground);
 
   // metric trees
