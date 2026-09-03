@@ -6,6 +6,7 @@
 
 const { test, expect } = require("@playwright/test");
 const AxeBuilder = require("@axe-core/playwright").default;
+const org = require("../src/_data/org.json");
 
 const PANEL_HEADINGS = [
   "It started small.",
@@ -318,6 +319,92 @@ test.describe("resilience", () => {
       .sort();
     expect(svgValues).toEqual(summary);
   });
+});
+
+// ---------------------------------------------------------------------------
+// Organization identity
+// ---------------------------------------------------------------------------
+test.describe("organization identity", () => {
+  test("the organization is named in the title and hero", async ({ page }) => {
+    await page.goto("/");
+    await expect(page).toHaveTitle(new RegExp(org.name));
+    await expect(page.locator(".org-badge .org-name")).toHaveText(org.name);
+    await expect(page.locator(".hero-sub")).toContainText(org.name);
+  });
+
+  test("the organization logo is decorative because adjacent text names it", async ({ page }) => {
+    await page.goto("/");
+    const logo = page.locator(".org-logo");
+    await expect(logo).toHaveAttribute("alt", "");
+    await expect(page.locator(".org-badge .org-name")).toHaveText(org.name);
+  });
+
+  test("the page does not load the organization logo from a third party", async ({ page }) => {
+    const external = [];
+    page.on("request", (request) => {
+      const host = new URL(request.url()).host;
+      if (
+        host &&
+        !host.startsWith("localhost") &&
+        !/fonts\.(googleapis|gstatic)\.com$/.test(host)
+      ) {
+        external.push(`${request.resourceType()} ${request.url()}`);
+      }
+    });
+
+    await page.goto("/", { waitUntil: "networkidle" });
+    expect(external, external.join("\n")).toEqual([]);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Hero reflow and overlap
+// ---------------------------------------------------------------------------
+test.describe("hero layout", () => {
+  const sizes = [
+    { width: 1280, height: 900 },
+    { width: 1280, height: 560 },
+    { width: 1024, height: 640 },
+    { width: 768, height: 600 },
+    { width: 390, height: 844 },
+    { width: 320, height: 600 },
+    { width: 320, height: 400, mayScroll: true },
+  ];
+
+  for (const size of sizes) {
+    test(`the plant does not overlap the scroll hint at ${size.width}x${size.height}`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({ width: size.width, height: size.height });
+      await page.goto("/");
+
+      const boxes = await page.evaluate(() => {
+        const rect = (selector) => {
+          const { top, bottom, left, right } =
+            document.querySelector(selector).getBoundingClientRect();
+          return { top, bottom, left, right };
+        };
+        return {
+          seed: rect(".seed"),
+          hint: rect(".scroll-hint"),
+          viewport: window.innerHeight,
+        };
+      });
+
+      const { seed, hint, viewport } = boxes;
+      const overlaps =
+        seed.bottom > hint.top &&
+        seed.top < hint.bottom &&
+        seed.right > hint.left &&
+        seed.left < hint.right;
+
+      expect(overlaps).toBe(false);
+
+      if (!size.mayScroll) {
+        expect(hint.bottom).toBeLessThanOrEqual(viewport + 1);
+      }
+    });
+  }
 });
 
 // ---------------------------------------------------------------------------

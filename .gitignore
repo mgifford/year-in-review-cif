@@ -67,3 +67,4 @@ _site/
 .terraform/
 *.tfstate
 *.tfstate.*
+.venv/

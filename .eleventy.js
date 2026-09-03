@@ -1,5 +1,6 @@
 module.exports = function (config) {
   config.addPassthroughCopy({ "metrics_data/data": "data" });
+  config.addPassthroughCopy({ "metrics_data/org": "org" });
   config.addPassthroughCopy("src/metrics-data.js");
 
   // Set pathPrefix for site
