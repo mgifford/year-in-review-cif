@@ -363,6 +363,23 @@ test.describe("organization identity", () => {
     await expect(section.locator(".community-stat dd")).toHaveText(/^\d+$/);
     await expect(section.getByRole("link", { name: /Drupal\.org/ }).first()).toBeVisible();
   });
+
+  // The state a newly retargeted site is in before its first collection run.
+  test("with no snapshot built in, it shows the error rather than fetching a stale one", async ({
+    page,
+  }) => {
+    const requested = [];
+    page.on("request", (r) => {
+      if (r.url().includes("/data/")) requested.push(r.url());
+    });
+    await page.addInitScript(() => {
+      Object.defineProperty(window, "YIR_DATA_FILE", { value: null, writable: false });
+    });
+    await page.goto("/");
+    await expect(page.locator("#metricsStatus")).toBeVisible();
+    await expect(page.locator("#metricsStatus")).toHaveClass(/error/);
+    expect(requested, `should not request any snapshot:\n${requested.join("\n")}`).toEqual([]);
+  });
 });
 
 // ---------------------------------------------------------------------------

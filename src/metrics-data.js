@@ -1,6 +1,7 @@
 // The build resolves the newest snapshot in metrics_data/data/ and exposes the
-// filename on window; the constant is only a fallback for direct file opening.
-const DATA_FILE = window.YIR_DATA_FILE || "metrics_2025-09-03_to_2026-09-03.json";
+// filename on window. There is deliberately no hardcoded fallback: a stale name
+// could belong to a different organization, so no data means the error state.
+const DATA_FILE = window.YIR_DATA_FILE || null;
 
 const EMPTY_DATA = {
   period: { start: null, end: null },
@@ -43,6 +44,7 @@ function uniqueLocations(repos) {
 
 export async function loadYearInReviewData() {
   try {
+    if (!DATA_FILE) throw new Error("No metrics snapshot was built into this site.");
     const res = await fetch(`data/${DATA_FILE}`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const raw = await res.json();
