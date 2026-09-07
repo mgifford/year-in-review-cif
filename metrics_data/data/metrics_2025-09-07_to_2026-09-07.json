@@ -1,10 +1,10 @@
 {
   "period": {
-    "start": "2025-09-03",
-    "end": "2026-09-03"
+    "start": "2025-09-07",
+    "end": "2026-09-07"
   },
-  "generated_at": "2026-09-03T14:43:42.911431+00:00",
-  "total_repo_count": 64,
+  "generated_at": "2026-09-07T07:36:44.841065+00:00",
+  "total_repo_count": 66,
   "repos": [
     {
       "name": "bowline",
@@ -180,7 +180,7 @@
       "stargazers_count": 22,
       "watchers_count": 26,
       "forks_count": 58,
-      "merged_pr_count": 153,
+      "merged_pr_count": 148,
       "data_complete": true
     },
     {
@@ -497,7 +497,7 @@
       "stargazers_count": 3,
       "watchers_count": 35,
       "forks_count": 3,
-      "merged_pr_count": 23,
+      "merged_pr_count": 25,
       "data_complete": true
     },
     {
@@ -573,7 +573,7 @@
       "stargazers_count": 5,
       "watchers_count": 41,
       "forks_count": 3,
-      "merged_pr_count": 69,
+      "merged_pr_count": 70,
       "data_complete": true
     },
     {
@@ -752,7 +752,7 @@
       "url": "https://github.com/CivicActions/openacr-editor",
       "description": "With this tool, people can generate Accessibility Conformance Report in the OpenACR format.",
       "errors": [],
-      "total_commit_count": 28,
+      "total_commit_count": 30,
       "commits_per_week": {
         "2025-W37": 1,
         "2025-W45": 1,
@@ -768,14 +768,14 @@
         "2026-W27": 1,
         "2026-W29": 2,
         "2026-W30": 3,
-        "2026-W34": 2
+        "2026-W34": 4
       },
       "contributors": [
         {
           "name": "dependabot[bot]",
           "location": null,
           "company": null,
-          "commit_count": 26,
+          "commit_count": 28,
           "is_new": false
         },
         {
@@ -790,7 +790,7 @@
       "stargazers_count": 1,
       "watchers_count": 1,
       "forks_count": 0,
-      "merged_pr_count": 27,
+      "merged_pr_count": 29,
       "data_complete": true
     },
     {
@@ -980,7 +980,7 @@
       "stargazers_count": 18,
       "watchers_count": 5,
       "forks_count": 3,
-      "merged_pr_count": 9,
+      "merged_pr_count": 7,
       "data_complete": true
     },
     {
@@ -1465,7 +1465,7 @@
       "stargazers_count": 1,
       "watchers_count": 1,
       "forks_count": 4,
-      "merged_pr_count": 10,
+      "merged_pr_count": 9,
       "data_complete": true
     },
     {
@@ -1635,18 +1635,26 @@
       "name": "git-for-designers-sb-10012025",
       "url": "https://github.com/CivicActions/git-for-designers-sb-10012025",
       "description": "GH practice/experimentation",
-      "errors": [
-        "Stats not ready for git-for-designers-sb-10012025 after 30s, skipping"
+      "errors": [],
+      "total_commit_count": 5,
+      "commits_per_week": {
+        "2025-W37": 5
+      },
+      "contributors": [
+        {
+          "name": "adriancooke",
+          "location": "Middletown",
+          "company": "CivicActions",
+          "commit_count": 5,
+          "is_new": false
+        }
       ],
-      "total_commit_count": 0,
-      "commits_per_week": {},
-      "contributors": [],
-      "committer_count": 0,
+      "committer_count": 1,
       "stargazers_count": 0,
       "watchers_count": 0,
       "forks_count": 0,
       "merged_pr_count": 0,
-      "data_complete": false
+      "data_complete": true
     },
     {
       "name": "SOO-Wizard",
@@ -1876,18 +1884,27 @@
       "name": "FOIA-RPMS",
       "url": "https://github.com/CivicActions/FOIA-RPMS",
       "description": null,
-      "errors": [
-        "Stats not ready for FOIA-RPMS after 30s, skipping"
+      "errors": [],
+      "total_commit_count": 3,
+      "commits_per_week": {
+        "2026-W05": 2,
+        "2026-W08": 1
+      },
+      "contributors": [
+        {
+          "name": "grugnog",
+          "location": "Oregon, US",
+          "company": "CivicActions",
+          "commit_count": 3,
+          "is_new": true
+        }
       ],
-      "total_commit_count": 0,
-      "commits_per_week": {},
-      "contributors": [],
-      "committer_count": 0,
+      "committer_count": 1,
       "stargazers_count": 2,
       "watchers_count": 0,
       "forks_count": 1,
       "merged_pr_count": 0,
-      "data_complete": false
+      "data_complete": true
     },
     {
       "name": "seo-guides",
@@ -2163,6 +2180,56 @@
         }
       ],
       "committer_count": 7,
+      "stargazers_count": 0,
+      "watchers_count": 0,
+      "forks_count": 0,
+      "merged_pr_count": 0,
+      "data_complete": true
+    },
+    {
+      "name": "civicactions",
+      "url": "https://github.com/CivicActions/civicactions",
+      "description": "Alpha: CivicActions content hub and home site",
+      "errors": [],
+      "total_commit_count": 7,
+      "commits_per_week": {
+        "2026-W34": 7
+      },
+      "contributors": [
+        {
+          "name": "grugnog",
+          "location": "Oregon, US",
+          "company": "CivicActions",
+          "commit_count": 7,
+          "is_new": true
+        }
+      ],
+      "committer_count": 1,
+      "stargazers_count": 0,
+      "watchers_count": 0,
+      "forks_count": 0,
+      "merged_pr_count": 0,
+      "data_complete": true
+    },
+    {
+      "name": "flask-basics",
+      "url": "https://github.com/CivicActions/flask-basics",
+      "description": "An app for understanding basic Flask principles.",
+      "errors": [],
+      "total_commit_count": 5,
+      "commits_per_week": {
+        "2026-W34": 5
+      },
+      "contributors": [
+        {
+          "name": "Tom-Camp",
+          "location": "Burnsville, North Carolina, USA",
+          "company": "@CivicActions",
+          "commit_count": 5,
+          "is_new": true
+        }
+      ],
+      "committer_count": 1,
       "stargazers_count": 0,
       "watchers_count": 0,
       "forks_count": 0,
