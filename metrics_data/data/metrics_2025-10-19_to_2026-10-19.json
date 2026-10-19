@@ -1,9 +1,9 @@
 {
   "period": {
-    "start": "2025-10-12",
-    "end": "2026-10-12"
+    "start": "2025-10-19",
+    "end": "2026-10-19"
   },
-  "generated_at": "2026-10-12T09:54:16.261579+00:00",
+  "generated_at": "2026-10-19T08:10:19.010362+00:00",
   "total_repo_count": 68,
   "repos": [
     {
@@ -26,7 +26,7 @@
       "url": "https://github.com/CivicActions/guidebook",
       "description": "The home of policies and guidelines that make up CivicActions",
       "errors": [],
-      "total_commit_count": 178,
+      "total_commit_count": 180,
       "commits_per_week": {
         "2026-W31": 6,
         "2025-W49": 3,
@@ -37,6 +37,7 @@
         "2025-W47": 9,
         "2026-W28": 13,
         "2026-W32": 3,
+        "2026-W40": 3,
         "2026-W08": 5,
         "2025-W51": 8,
         "2026-W09": 3,
@@ -53,7 +54,6 @@
         "2026-W37": 3,
         "2025-W43": 2,
         "2026-W18": 3,
-        "2025-W40": 1,
         "2025-W45": 2,
         "2025-W50": 1,
         "2026-W00": 3,
@@ -123,7 +123,7 @@
           "name": "openprivacy",
           "location": "Pittsburgh, PA",
           "company": "@CivicActions",
-          "commit_count": 4,
+          "commit_count": 5,
           "is_new": false
         },
         {
@@ -144,7 +144,7 @@
           "name": "dmundra",
           "location": null,
           "company": "@CivicActions + personal projects",
-          "commit_count": 26,
+          "commit_count": 27,
           "is_new": false
         },
         {
@@ -166,7 +166,7 @@
       "stargazers_count": 22,
       "watchers_count": 26,
       "forks_count": 58,
-      "merged_pr_count": 152,
+      "merged_pr_count": 154,
       "data_complete": true
     },
     {
@@ -325,10 +325,11 @@
       "url": "https://github.com/CivicActions/accessibility",
       "description": "CivicActions Accessibility Site: A collection of resources about digital accessibility and how it aligns with open source, CivicTech and Digital Transformation.",
       "errors": [],
-      "total_commit_count": 64,
+      "total_commit_count": 69,
       "commits_per_week": {
         "2026-W23": 1,
         "2026-W30": 4,
+        "2026-W40": 5,
         "2025-W44": 1,
         "2025-W45": 2,
         "2025-W51": 2,
@@ -361,14 +362,14 @@
           "name": "dependabot[bot]",
           "location": null,
           "company": null,
-          "commit_count": 47,
+          "commit_count": 48,
           "is_new": false
         },
         {
           "name": "dmundra",
           "location": null,
           "company": "@CivicActions + personal projects",
-          "commit_count": 8,
+          "commit_count": 10,
           "is_new": false
         },
         {
@@ -383,7 +384,7 @@
       "stargazers_count": 34,
       "watchers_count": 39,
       "forks_count": 15,
-      "merged_pr_count": 63,
+      "merged_pr_count": 66,
       "data_complete": true
     },
     {
@@ -906,13 +907,20 @@
       "errors": [],
       "total_commit_count": 39,
       "commits_per_week": {
+        "2026-W40": 1,
         "2026-W05": 3,
         "2025-W45": 7,
         "2025-W42": 16,
-        "2025-W43": 12,
-        "2025-W40": 1
+        "2025-W43": 12
       },
       "contributors": [
+        {
+          "name": "andyhawks",
+          "location": "Denver, CO, USA",
+          "company": "CivicActions",
+          "commit_count": 1,
+          "is_new": true
+        },
         {
           "name": "sharjeelaziz",
           "location": "Falls Church VA",
@@ -952,11 +960,11 @@
           "name": "mgifford",
           "location": "Ottawa, Canada",
           "company": "@CivicActions ",
-          "commit_count": 14,
+          "commit_count": 13,
           "is_new": false
         }
       ],
-      "committer_count": 6,
+      "committer_count": 7,
       "stargazers_count": 18,
       "watchers_count": 5,
       "forks_count": 3,
@@ -1437,13 +1445,12 @@
       "url": "https://github.com/CivicActions/design-and-research",
       "description": "CivicActions' Design, Content, and Research Practice Area",
       "errors": [],
-      "total_commit_count": 98,
+      "total_commit_count": 75,
       "commits_per_week": {
         "2025-W44": 2,
         "2025-W45": 12,
         "2025-W46": 2,
         "2025-W51": 1,
-        "2025-W40": 23,
         "2025-W49": 6,
         "2025-W50": 1,
         "2026-W01": 28,
@@ -1470,7 +1477,7 @@
           "name": "jennawaszak",
           "location": "Georgia",
           "company": "CivicActions",
-          "commit_count": 81,
+          "commit_count": 58,
           "is_new": false
         }
       ],
@@ -1486,10 +1493,9 @@
       "url": "https://github.com/CivicActions/ditap-curriculum-update",
       "description": "CA Adoption of refreshed DITAP curriculum",
       "errors": [],
-      "total_commit_count": 192,
+      "total_commit_count": 183,
       "commits_per_week": {
         "2026-W25": 2,
-        "2025-W40": 9,
         "2025-W42": 27,
         "2025-W43": 71,
         "2025-W44": 47,
@@ -1509,21 +1515,14 @@
           "is_new": true
         },
         {
-          "name": "april-cruz",
-          "location": null,
-          "company": null,
-          "commit_count": 3,
-          "is_new": false
-        },
-        {
           "name": "kristenjernigan",
           "location": null,
           "company": null,
-          "commit_count": 187,
+          "commit_count": 181,
           "is_new": false
         }
       ],
-      "committer_count": 3,
+      "committer_count": 2,
       "stargazers_count": 0,
       "watchers_count": 1,
       "forks_count": 0,
@@ -1534,9 +1533,7 @@
       "name": "git-for-designers-sb-10012025",
       "url": "https://github.com/CivicActions/git-for-designers-sb-10012025",
       "description": "GH practice/experimentation",
-      "errors": [
-        "Stats not ready for git-for-designers-sb-10012025 after 30s, skipping"
-      ],
+      "errors": [],
       "total_commit_count": 0,
       "commits_per_week": {},
       "contributors": [],
@@ -1545,7 +1542,7 @@
       "watchers_count": 0,
       "forks_count": 0,
       "merged_pr_count": 0,
-      "data_complete": false
+      "data_complete": true
     },
     {
       "name": "SOO-Wizard",
@@ -2086,11 +2083,12 @@
       "url": "https://github.com/CivicActions/civicactions",
       "description": "Alpha: CivicActions content hub and home site",
       "errors": [],
-      "total_commit_count": 126,
+      "total_commit_count": 175,
       "commits_per_week": {
         "2026-W38": 31,
-        "2026-W39": 38,
         "2026-W36": 28,
+        "2026-W39": 40,
+        "2026-W40": 47,
         "2026-W37": 20,
         "2026-W34": 7,
         "2026-W35": 2
@@ -2100,35 +2098,35 @@
           "name": "qjac",
           "location": "Minneapolis, MN",
           "company": null,
-          "commit_count": 4,
+          "commit_count": 6,
           "is_new": true
         },
         {
           "name": "andyhawks",
           "location": "Denver, CO, USA",
           "company": "CivicActions",
-          "commit_count": 12,
+          "commit_count": 17,
           "is_new": true
         },
         {
           "name": "grugnog",
           "location": "Oregon, US",
           "company": "CivicActions",
-          "commit_count": 24,
+          "commit_count": 27,
           "is_new": true
         },
         {
           "name": "iris-i",
           "location": null,
           "company": "Civicactions",
-          "commit_count": 36,
+          "commit_count": 44,
           "is_new": true
         },
         {
           "name": "jerseycheese",
           "location": "Virginia Beach, VA",
           "company": "@CivicActions ",
-          "commit_count": 43,
+          "commit_count": 74,
           "is_new": true
         }
       ],
@@ -2136,7 +2134,7 @@
       "stargazers_count": 0,
       "watchers_count": 0,
       "forks_count": 0,
-      "merged_pr_count": 27,
+      "merged_pr_count": 38,
       "data_complete": true
     },
     {
@@ -2162,7 +2160,7 @@
       "committer_count": 1,
       "stargazers_count": 1,
       "watchers_count": 0,
-      "forks_count": 6,
+      "forks_count": 7,
       "merged_pr_count": 1,
       "data_complete": true
     },
@@ -2196,12 +2194,13 @@
       "url": "https://github.com/CivicActions/keychain-cli",
       "description": "A small, security-focused CLI for storing and retrieving secrets in the macOS Keychain",
       "errors": [],
-      "total_commit_count": 41,
+      "total_commit_count": 43,
       "commits_per_week": {
         "2026-W39": 28,
         "2026-W36": 2,
         "2026-W37": 6,
-        "2026-W38": 5
+        "2026-W38": 5,
+        "2026-W40": 2
       },
       "contributors": [
         {
@@ -2229,7 +2228,7 @@
           "name": "openprivacy",
           "location": "Pittsburgh, PA",
           "company": "@CivicActions",
-          "commit_count": 20,
+          "commit_count": 22,
           "is_new": true
         }
       ],
@@ -2237,7 +2236,7 @@
       "stargazers_count": 1,
       "watchers_count": 0,
       "forks_count": 0,
-      "merged_pr_count": 6,
+      "merged_pr_count": 7,
       "data_complete": true
     }
   ],
@@ -2246,11 +2245,11 @@
     "m2py",
     "ditap-curriculum-update",
     "guidebook",
-    "thresher",
     "civicactions",
+    "thresher",
     "ai-runbook-jh",
     "training",
-    "design-and-research",
-    "cypress-tests"
+    "cypress-tests",
+    "civicactions-homesite"
   ]
 }
