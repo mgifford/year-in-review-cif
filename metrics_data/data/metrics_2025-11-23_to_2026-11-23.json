@@ -1,10 +1,10 @@
 {
   "period": {
-    "start": "2025-11-16",
-    "end": "2026-11-16"
+    "start": "2025-11-23",
+    "end": "2026-11-23"
   },
-  "generated_at": "2026-11-16T10:16:06.261314+00:00",
-  "total_repo_count": 70,
+  "generated_at": "2026-11-23T11:25:59.602190+00:00",
+  "total_repo_count": 71,
   "repos": [
     {
       "name": "bowline",
@@ -26,7 +26,7 @@
       "url": "https://github.com/CivicActions/guidebook",
       "description": "The home of policies and guidelines that make up CivicActions",
       "errors": [],
-      "total_commit_count": 171,
+      "total_commit_count": 170,
       "commits_per_week": {
         "2026-W31": 6,
         "2025-W49": 3,
@@ -54,7 +54,6 @@
         "2026-W42": 6,
         "2026-W44": 2,
         "2026-W18": 3,
-        "2025-W45": 2,
         "2025-W50": 1,
         "2026-W00": 3,
         "2026-W01": 1,
@@ -74,7 +73,8 @@
         "2026-W29": 2,
         "2026-W34": 1,
         "2026-W36": 2,
-        "2026-W39": 5
+        "2026-W39": 5,
+        "2026-W45": 1
       },
       "contributors": [
         {
@@ -158,7 +158,7 @@
           "name": "dependabot[bot]",
           "location": null,
           "company": null,
-          "commit_count": 107,
+          "commit_count": 106,
           "is_new": false
         }
       ],
@@ -166,7 +166,7 @@
       "stargazers_count": 22,
       "watchers_count": 26,
       "forks_count": 58,
-      "merged_pr_count": 147,
+      "merged_pr_count": 146,
       "data_complete": true
     },
     {
@@ -325,13 +325,12 @@
       "url": "https://github.com/CivicActions/accessibility",
       "description": "CivicActions Accessibility Site: A collection of resources about digital accessibility and how it aligns with open source, CivicTech and Digital Transformation.",
       "errors": [],
-      "total_commit_count": 79,
+      "total_commit_count": 77,
       "commits_per_week": {
         "2026-W23": 1,
         "2026-W30": 4,
         "2026-W40": 5,
         "2026-W44": 14,
-        "2025-W45": 2,
         "2025-W51": 2,
         "2026-W02": 2,
         "2026-W04": 1,
@@ -362,14 +361,14 @@
           "name": "dependabot[bot]",
           "location": null,
           "company": null,
-          "commit_count": 60,
+          "commit_count": 59,
           "is_new": false
         },
         {
           "name": "dmundra",
           "location": null,
           "company": "@CivicActions + personal projects",
-          "commit_count": 10,
+          "commit_count": 9,
           "is_new": false
         },
         {
@@ -384,7 +383,7 @@
       "stargazers_count": 34,
       "watchers_count": 39,
       "forks_count": 15,
-      "merged_pr_count": 76,
+      "merged_pr_count": 74,
       "data_complete": true
     },
     {
@@ -581,10 +580,9 @@
       "url": "https://github.com/CivicActions/ca-jekyll-vanilla",
       "description": "CivicActions Jekyll Vanilla site",
       "errors": [],
-      "total_commit_count": 78,
+      "total_commit_count": 77,
       "commits_per_week": {
         "2026-W01": 8,
-        "2025-W45": 1,
         "2026-W02": 1,
         "2026-W04": 1,
         "2026-W05": 2,
@@ -626,7 +624,7 @@
           "name": "dependabot[bot]",
           "location": null,
           "company": null,
-          "commit_count": 75,
+          "commit_count": 74,
           "is_new": false
         }
       ],
@@ -634,7 +632,7 @@
       "stargazers_count": 1,
       "watchers_count": 5,
       "forks_count": 0,
-      "merged_pr_count": 76,
+      "merged_pr_count": 75,
       "data_complete": true
     },
     {
@@ -642,20 +640,10 @@
       "url": "https://github.com/CivicActions/accessibility-qa",
       "description": "QA site for https://accessibility.civicactions.com/",
       "errors": [],
-      "total_commit_count": 1,
-      "commits_per_week": {
-        "2025-W45": 1
-      },
-      "contributors": [
-        {
-          "name": "dmundra",
-          "location": null,
-          "company": "@CivicActions + personal projects",
-          "commit_count": 1,
-          "is_new": false
-        }
-      ],
-      "committer_count": 1,
+      "total_commit_count": 0,
+      "commits_per_week": {},
+      "contributors": [],
+      "committer_count": 0,
       "stargazers_count": 1,
       "watchers_count": 11,
       "forks_count": 0,
@@ -712,9 +700,8 @@
       "url": "https://github.com/CivicActions/openacr",
       "description": "OpenACR is a digital native Accessibility Conformance Report (ACR). The initial development is based on Section 508 requirements. The main goal is to be able to compare the accessibility claims of digital products and services.  A structured, self-validated, machine-readable documentation will provide for this.",
       "errors": [],
-      "total_commit_count": 24,
+      "total_commit_count": 22,
       "commits_per_week": {
-        "2025-W45": 2,
         "2026-W02": 1,
         "2026-W07": 2,
         "2026-W10": 1,
@@ -731,7 +718,7 @@
           "name": "dependabot[bot]",
           "location": null,
           "company": null,
-          "commit_count": 23,
+          "commit_count": 21,
           "is_new": false
         },
         {
@@ -746,7 +733,7 @@
       "stargazers_count": 4,
       "watchers_count": 1,
       "forks_count": 1,
-      "merged_pr_count": 24,
+      "merged_pr_count": 22,
       "data_complete": true
     },
     {
@@ -754,9 +741,8 @@
       "url": "https://github.com/CivicActions/openacr-editor",
       "description": "With this tool, people can generate Accessibility Conformance Report in the OpenACR format.",
       "errors": [],
-      "total_commit_count": 29,
+      "total_commit_count": 28,
       "commits_per_week": {
-        "2025-W45": 1,
         "2026-W02": 3,
         "2026-W06": 1,
         "2026-W07": 2,
@@ -776,7 +762,7 @@
           "name": "dependabot[bot]",
           "location": null,
           "company": null,
-          "commit_count": 27,
+          "commit_count": 26,
           "is_new": false
         },
         {
@@ -791,7 +777,7 @@
       "stargazers_count": 1,
       "watchers_count": 1,
       "forks_count": 0,
-      "merged_pr_count": 28,
+      "merged_pr_count": 27,
       "data_complete": true
     },
     {
@@ -908,11 +894,10 @@
       "url": "https://github.com/CivicActions/open-practice",
       "description": "Our list of open practices.",
       "errors": [],
-      "total_commit_count": 22,
+      "total_commit_count": 15,
       "commits_per_week": {
         "2026-W40": 1,
         "2026-W05": 3,
-        "2025-W45": 7,
         "2026-W42": 11
       },
       "contributors": [
@@ -931,20 +916,6 @@
           "is_new": true
         },
         {
-          "name": "BlakeOrgan",
-          "location": null,
-          "company": null,
-          "commit_count": 1,
-          "is_new": true
-        },
-        {
-          "name": "marissaleighfox",
-          "location": null,
-          "company": null,
-          "commit_count": 2,
-          "is_new": false
-        },
-        {
           "name": "davidmpickett",
           "location": "Chicago",
           "company": "@CivicActions ",
@@ -955,18 +926,11 @@
           "name": "KeithKawasaki",
           "location": null,
           "company": "CivicActions",
-          "commit_count": 3,
-          "is_new": false
-        },
-        {
-          "name": "mgifford",
-          "location": "Ottawa, Canada",
-          "company": "@CivicActions ",
-          "commit_count": 3,
+          "commit_count": 2,
           "is_new": false
         }
       ],
-      "committer_count": 7,
+      "committer_count": 4,
       "stargazers_count": 18,
       "watchers_count": 5,
       "forks_count": 4,
@@ -1227,13 +1191,12 @@
       "url": "https://github.com/CivicActions/civicactions-a11ysite",
       "description": "CivicActions Accessibility Site: A collection of resources about digital accessibility and how it aligns with open source, CivicTech and Digital Transformation.",
       "errors": [],
-      "total_commit_count": 53,
+      "total_commit_count": 51,
       "commits_per_week": {
         "2026-W09": 3,
         "2026-W28": 2,
         "2025-W47": 4,
         "2026-W30": 7,
-        "2025-W45": 2,
         "2026-W05": 3,
         "2026-W07": 3,
         "2026-W11": 5,
@@ -1269,7 +1232,7 @@
           "name": "dependabot[bot]",
           "location": null,
           "company": null,
-          "commit_count": 48,
+          "commit_count": 46,
           "is_new": false
         }
       ],
@@ -1277,7 +1240,7 @@
       "stargazers_count": 1,
       "watchers_count": 0,
       "forks_count": 1,
-      "merged_pr_count": 50,
+      "merged_pr_count": 48,
       "data_complete": true
     },
     {
@@ -1300,20 +1263,10 @@
       "url": "https://github.com/CivicActions/Drupal-ACR",
       "description": "Code to move Drupal issue queues to evergreen Accessibility Compliance Report",
       "errors": [],
-      "total_commit_count": 1,
-      "commits_per_week": {
-        "2025-W45": 1
-      },
-      "contributors": [
-        {
-          "name": "dependabot[bot]",
-          "location": null,
-          "company": null,
-          "commit_count": 1,
-          "is_new": true
-        }
-      ],
-      "committer_count": 1,
+      "total_commit_count": 0,
+      "commits_per_week": {},
+      "contributors": [],
+      "committer_count": 0,
       "stargazers_count": 1,
       "watchers_count": 0,
       "forks_count": 0,
@@ -1436,9 +1389,8 @@
       "url": "https://github.com/CivicActions/design-and-research",
       "description": "CivicActions' Design, Content, and Research Practice Area",
       "errors": [],
-      "total_commit_count": 73,
+      "total_commit_count": 61,
       "commits_per_week": {
-        "2025-W45": 12,
         "2025-W46": 2,
         "2025-W51": 1,
         "2025-W49": 6,
@@ -1453,8 +1405,8 @@
           "name": "BlakeOrgan",
           "location": null,
           "company": null,
-          "commit_count": 15,
-          "is_new": true
+          "commit_count": 3,
+          "is_new": false
         },
         {
           "name": "jennawaszak",
@@ -1599,7 +1551,7 @@
       ],
       "committer_count": 1,
       "stargazers_count": 5,
-      "watchers_count": 0,
+      "watchers_count": 1,
       "forks_count": 0,
       "merged_pr_count": 28,
       "data_complete": true
@@ -2065,15 +2017,16 @@
       "url": "https://github.com/CivicActions/civicactions",
       "description": "Alpha: CivicActions content hub and home site",
       "errors": [],
-      "total_commit_count": 378,
+      "total_commit_count": 427,
       "commits_per_week": {
         "2026-W36": 28,
         "2026-W38": 31,
         "2026-W42": 153,
         "2026-W43": 33,
+        "2026-W45": 47,
         "2026-W39": 40,
         "2026-W40": 47,
-        "2026-W44": 17,
+        "2026-W44": 19,
         "2026-W37": 20,
         "2026-W34": 7,
         "2026-W35": 2
@@ -2083,14 +2036,14 @@
           "name": "dependabot[bot]",
           "location": null,
           "company": null,
-          "commit_count": 6,
+          "commit_count": 11,
           "is_new": true
         },
         {
           "name": "qjac",
           "location": "Minneapolis, MN",
           "company": null,
-          "commit_count": 13,
+          "commit_count": 15,
           "is_new": true
         },
         {
@@ -2111,7 +2064,7 @@
           "name": "grugnog",
           "location": "Oregon, US",
           "company": "CivicActions",
-          "commit_count": 72,
+          "commit_count": 93,
           "is_new": true
         },
         {
@@ -2126,7 +2079,7 @@
       "stargazers_count": 0,
       "watchers_count": 0,
       "forks_count": 0,
-      "merged_pr_count": 89,
+      "merged_pr_count": 103,
       "data_complete": true
     },
     {
@@ -2152,7 +2105,7 @@
       "committer_count": 1,
       "stargazers_count": 1,
       "watchers_count": 0,
-      "forks_count": 7,
+      "forks_count": 8,
       "merged_pr_count": 1,
       "data_complete": true
     },
@@ -2186,10 +2139,11 @@
       "url": "https://github.com/CivicActions/keychain-cli",
       "description": "A small, security-focused CLI for storing and retrieving secrets in the macOS Keychain",
       "errors": [],
-      "total_commit_count": 51,
+      "total_commit_count": 60,
       "commits_per_week": {
-        "2026-W43": 6,
+        "2026-W45": 9,
         "2026-W39": 28,
+        "2026-W43": 6,
         "2026-W36": 2,
         "2026-W37": 6,
         "2026-W38": 5,
@@ -2198,24 +2152,24 @@
       },
       "contributors": [
         {
+          "name": "civicactionsbot",
+          "location": null,
+          "company": "@CivicActions ",
+          "commit_count": 1,
+          "is_new": true
+        },
+        {
           "name": "civicactions-release-automation[bot]",
           "location": null,
           "company": null,
-          "commit_count": 1,
+          "commit_count": 2,
           "is_new": true
         },
         {
           "name": "dependabot[bot]",
           "location": null,
           "company": null,
-          "commit_count": 1,
-          "is_new": true
-        },
-        {
-          "name": "civicactionsbot",
-          "location": null,
-          "company": "@CivicActions ",
-          "commit_count": 1,
+          "commit_count": 5,
           "is_new": true
         },
         {
@@ -2229,14 +2183,14 @@
           "name": "TheBoatyMcBoatFace",
           "location": "Arlington, VA",
           "company": "@CivicActions",
-          "commit_count": 14,
+          "commit_count": 15,
           "is_new": true
         },
         {
           "name": "openprivacy",
           "location": "Pittsburgh, PA",
           "company": "@CivicActions",
-          "commit_count": 24,
+          "commit_count": 26,
           "is_new": true
         }
       ],
@@ -2244,7 +2198,7 @@
       "stargazers_count": 2,
       "watchers_count": 0,
       "forks_count": 0,
-      "merged_pr_count": 12,
+      "merged_pr_count": 21,
       "data_complete": true
     },
     {
@@ -2303,6 +2257,31 @@
       "forks_count": 0,
       "merged_pr_count": 0,
       "data_complete": true
+    },
+    {
+      "name": "drupal-project-maintenance-lifecycle",
+      "url": "https://github.com/CivicActions/drupal-project-maintenance-lifecycle",
+      "description": "Script to automate Drupal Project Maintenance Lifecycle checks",
+      "errors": [],
+      "total_commit_count": 4,
+      "commits_per_week": {
+        "2026-W45": 4
+      },
+      "contributors": [
+        {
+          "name": "dmundra",
+          "location": null,
+          "company": "@CivicActions + personal projects",
+          "commit_count": 4,
+          "is_new": true
+        }
+      ],
+      "committer_count": 1,
+      "stargazers_count": 0,
+      "watchers_count": 0,
+      "forks_count": 0,
+      "merged_pr_count": 0,
+      "data_complete": true
     }
   ],
   "top_repos_by_commits": [
@@ -2314,7 +2293,7 @@
     "ai-runbook-jh",
     "training",
     "cypress-tests",
-    "accessibility",
-    "civicactions-homesite"
+    "civicactions-homesite",
+    "accessibility"
   ]
 }
